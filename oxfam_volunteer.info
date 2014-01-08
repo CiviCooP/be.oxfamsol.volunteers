@@ -1,0 +1,7 @@
+name = Oxfam volunteer pages
+description = Provides views for oxfam for volunteers page
+core = 7.x
+dependencies[] = views
+dependencies[] = civicrm
+
+
