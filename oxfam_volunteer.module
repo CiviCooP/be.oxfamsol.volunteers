@@ -19,7 +19,7 @@ function oxfam_volunteer_enable() {
 	$node->type = 'webform';
 	node_object_prepare($node);
 	$node->title = 'Volunteer';
-	$node->language = 'en';
+	$node->language = 'und';
 	$node->body[LANGUAGE_NONE][0]['value']   = '';
 	$node->body[LANGUAGE_NONE][0]['format']  = 'full_html';
 	$node->uid = 1;
@@ -679,7 +679,7 @@ $view = new view();
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
   $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
-  $handler->display->display_options['path'] = 'volunteers/show';
+  $handler->display->display_options['path'] = 'volunteers';
   $translatables['test'] = array(
     t('Master'),
     t('Volunteers'),
