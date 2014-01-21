@@ -1,7 +1,13 @@
 name = Oxfam volunteer pages
 description = Provides views for oxfam for volunteers page
+package = Oxfam
 core = 7.x
+dependencies[] = node
+dependencies[] = token
 dependencies[] = views
+dependencies[] = webform
+dependencies[] = webform_civicrm
 dependencies[] = civicrm
+dependencies[] = path
 
 

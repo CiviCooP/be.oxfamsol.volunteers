@@ -7,19 +7,523 @@ function oxfam_volunteer_views_api() {
   return array('api' => 3.0);
 }
 
+function oxfam_volunteer_disable() {
+	$node_id = variable_get('oxfam_volunteer_webform_node_id', 0);
+	if ($node_id > 0) {
+		node_delete($node_id);
+	}
+}
+
+function oxfam_volunteer_enable() {
+	$node = new stdClass();
+	$node->type = 'webform';
+	node_object_prepare($node);
+	$node->title = 'Volunteer';
+	$node->language = 'en';
+	$node->body[LANGUAGE_NONE][0]['value']   = '';
+	$node->body[LANGUAGE_NONE][0]['format']  = 'full_html';
+	$node->uid = 1;
+	$node->promote = 0;
+	$node->comment = 0;
+
+	$components = array (
+		  array (
+		    'pid' => '0',
+		    'form_key' => 'civicrm_1_contact_1_contact_contact_id',
+		    'name' => 'Contact ID',
+		    'type' => 'hidden',
+		    'value' => '',
+		    'extra' => 
+		    array (
+		      'private' => 0,
+		      'hidden_type' => 'value',
+		      'analysis' => false,
+		    ),
+		    'required' => '0',
+		    'weight' => '2',
+		    'page_num' => 1,
+		  ),
+		  array (
+		    'pid' => '0',
+		    'form_key' => 'civicrm_1_contact_1_contact_existing',
+		    'name' => 'Existing Contact',
+		    'type' => 'civicrm_contact',
+		    'value' => '',
+		    'extra' => 
+		    array (
+		      'allow_create' => 1,
+		      'private' => 0,
+		      'wrapper_classes' => '',
+		      'css_classes' => '',
+		      'widget' => 'hidden',
+		      'search_prompt' => '- Choose existing contact -',
+		      'none_prompt' => '+ Create new contact +',
+		      'results_display' => 
+		      array (
+		        'display_name' => 'display_name',
+		      ),
+		      'show_hidden_contact' => '1',
+		      'hide_fields' => 
+		      array (
+		        '' => '',
+		      ),
+		      'filters' => 
+		      array (
+		        'contact_sub_type' => '0',
+		        'group' => 
+		        array (
+		        ),
+		        'tag' => 
+		        array (
+		        ),
+		        'check_permissions' => 1,
+		      ),
+		      'unique' => 0,
+		      'title_display' => 'before',
+		      'randomize' => 0,
+		      'description' => '',
+		      'attributes' => 
+		      array (
+		      ),
+		      'default' => '',
+		      'default_contact_id' => '',
+		      'default_relationship' => '',
+		      'dupes_allowed' => false,
+		    ),
+		    'required' => '0',
+		    'weight' => '3',
+		    'page_num' => 1,
+		  ),
+		  array (
+		    'pid' => '0',
+		    'form_key' => 'civicrm_1_contact_1_cg1_custom_8',
+		    'name' => 'beschikbaarheid',
+		    'type' => 'textfield',
+		    'value' => '',
+		    'extra' => 
+		    array (
+		      'description' => '',
+		      'width' => 20,
+		      'private' => 0,
+		      'maxlength' => '',
+		      'field_prefix' => '',
+		      'field_suffix' => '',
+		      'disabled' => 0,
+		      'unique' => 0,
+		      'title_display' => 0,
+		      'placeholder' => '',
+		      'attributes' => 
+		      array (
+		      ),
+		      'analysis' => false,
+		    ),
+		    'required' => '0',
+		    'weight' => '4',
+		    'page_num' => 1,
+		  ),
+		  array (
+		    'pid' => '0',
+		    'form_key' => 'civicrm_1_contact_1_phone_phone',
+		    'name' => 'Phone Number',
+		    'type' => 'textfield',
+		    'value' => '',
+		    'extra' => 
+		    array (
+		      'width' => 20,
+		      'private' => 0,
+		      'maxlength' => '',
+		      'field_prefix' => '',
+		      'field_suffix' => '',
+		      'disabled' => 0,
+		      'unique' => 0,
+		      'title_display' => 0,
+		      'description' => '',
+		      'placeholder' => '',
+		      'attributes' => 
+		      array (
+		      ),
+		      'analysis' => false,
+		    ),
+		    'required' => '0',
+		    'weight' => '5',
+		    'page_num' => 1,
+		  ),
+		  array (
+		    'pid' => '0',
+		    'form_key' => 'civicrm_1_contact_1_address_street_address',
+		    'name' => 'Street Address',
+		    'type' => 'textfield',
+		    'value' => '',
+		    'extra' => 
+		    array (
+		      'width' => 60,
+		      'private' => 0,
+		      'maxlength' => '',
+		      'field_prefix' => '',
+		      'field_suffix' => '',
+		      'disabled' => 0,
+		      'unique' => 0,
+		      'title_display' => 0,
+		      'description' => '',
+		      'placeholder' => '',
+		      'attributes' => 
+		      array (
+		      ),
+		      'analysis' => false,
+		    ),
+		    'required' => '0',
+		    'weight' => '6',
+		    'page_num' => 1,
+		  ),
+		  array (
+		    'pid' => '0',
+		    'form_key' => 'civicrm_1_contact_1_address_supplemental_address_1',
+		    'name' => 'Street Address Line 2',
+		    'type' => 'textfield',
+		    'value' => '',
+		    'extra' => 
+		    array (
+		      'width' => 60,
+		      'private' => 0,
+		      'maxlength' => '',
+		      'field_prefix' => '',
+		      'field_suffix' => '',
+		      'disabled' => 0,
+		      'unique' => 0,
+		      'title_display' => 0,
+		      'description' => '',
+		      'placeholder' => '',
+		      'attributes' => 
+		      array (
+		      ),
+		      'analysis' => false,
+		    ),
+		    'required' => '0',
+		    'weight' => '7',
+		    'page_num' => 1,
+		  ),
+		  array (
+		    'pid' => '0',
+		    'form_key' => 'civicrm_1_contact_1_address_city',
+		    'name' => 'City',
+		    'type' => 'textfield',
+		    'value' => '',
+		    'extra' => 
+		    array (
+		      'width' => 20,
+		      'private' => 0,
+		      'maxlength' => '',
+		      'field_prefix' => '',
+		      'field_suffix' => '',
+		      'disabled' => 0,
+		      'unique' => 0,
+		      'title_display' => 0,
+		      'description' => '',
+		      'placeholder' => '',
+		      'attributes' => 
+		      array (
+		      ),
+		      'analysis' => false,
+		    ),
+		    'required' => '0',
+		    'weight' => '8',
+		    'page_num' => 1,
+		  ),
+		  array (
+		    'pid' => '0',
+		    'form_key' => 'civicrm_1_contact_1_address_postal_code',
+		    'name' => 'Postal Code',
+		    'type' => 'textfield',
+		    'value' => '',
+		    'extra' => 
+		    array (
+		      'width' => 7,
+		      'private' => 0,
+		      'maxlength' => '',
+		      'field_prefix' => '',
+		      'field_suffix' => '',
+		      'disabled' => 0,
+		      'unique' => 0,
+		      'title_display' => 0,
+		      'description' => '',
+		      'placeholder' => '',
+		      'attributes' => 
+		      array (
+		      ),
+		      'analysis' => false,
+		    ),
+		    'required' => '0',
+		    'weight' => '9',
+		    'page_num' => 1,
+		  ),
+		  array (
+		    'pid' => '0',
+		    'form_key' => 'civicrm_1_contact_1_email_email',
+		    'name' => 'E-mail',
+		    'type' => 'email',
+		    'value' => '',
+		    'extra' => 
+		    array (
+		      'width' => 20,
+		      'private' => 0,
+		      'unique' => 0,
+		      'disabled' => 0,
+		      'title_display' => 0,
+		      'description' => '',
+		      'placeholder' => '',
+		      'attributes' => 
+		      array (
+		      ),
+		      'analysis' => false,
+		    ),
+		    'required' => '0',
+		    'weight' => '10',
+		    'page_num' => 1,
+		  ),
+		  array (
+		    'pid' => '0',
+		    'form_key' => 'civicrm_2_contact_1_relationship_custom_21',
+		    'name' => 'Relationship to Volunteer taak in winkel',
+		    'type' => 'select',
+		    'value' => '',
+		    'extra' => 
+		    array (
+		      'multiple' => 1,
+		      'description' => '',
+		      'civicrm_live_options' => 1,
+		      'items' => 'responsible shop|verantwoordelijke winkel
+	seller|verkoper (m/v)
+	advisor textile|adviseur (m/v) textiel
+	advisor bookshop|adviseur (m/v) bookshop
+	advisor ict|adviseur (m/v) ICT
+	sorter|sorteerder (m/v)
+	public relations collaborator|public relations medewerk(st)er
+	north south collaborator|Noord-Zuid medewerk(st)er
+	finance and administration collaborator|financies en administratie medewerk(st)er',
+		      'private' => 0,
+		      'aslist' => NULL,
+		      'optrand' => 0,
+		      'other_option' => NULL,
+		      'other_text' => 'Other...',
+		      'title_display' => 0,
+		      'custom_keys' => false,
+		      'options_source' => '',
+		      'analysis' => true,
+		    ),
+		    'required' => '0',
+		    'weight' => '11',
+		    'page_num' => 1,
+		  ),
+		  array (
+		    'pid' => '0',
+		    'form_key' => 'civicrm_2_contact_1_contact_existing',
+		    'name' => 'Existing Contact',
+		    'type' => 'civicrm_contact',
+		    'value' => '',
+		    'extra' => 
+		    array (
+		      'allow_create' => 0,
+		      'private' => 0,
+		      'wrapper_classes' => '',
+		      'css_classes' => '',
+		      'widget' => 'hidden',
+		      'search_prompt' => '- Choose existing contact -',
+		      'none_prompt' => '- None Found -',
+		      'results_display' => 
+		      array (
+		        'display_name' => 'display_name',
+		      ),
+		      'show_hidden_contact' => '0',
+		      'default' => 'relationship',
+		      'default_relationship' => 
+		      array (
+		        '5_b' => '5_b',
+		      ),
+		      'dupes_allowed' => 0,
+		      'filters' => 
+		      array (
+		        'contact_sub_type' => '0',
+		        'group' => 
+		        array (
+		        ),
+		        'tag' => 
+		        array (
+		        ),
+		        'check_permissions' => 0,
+		      ),
+		      'unique' => 0,
+		      'title_display' => 'before',
+		      'randomize' => 0,
+		      'description' => '',
+		      'hide_fields' => 
+		      array (
+		      ),
+		      'attributes' => 
+		      array (
+		      ),
+		      'default_contact_id' => '',
+		    ),
+		    'required' => '0',
+		    'weight' => '61',
+		    'page_num' => 1,
+		  ), 
+		  array (
+		    'pid' => '0',
+		    'form_key' => 'civicrm_2_contact_1_contact_contact_id',
+		    'name' => 'Contact ID',
+		    'type' => 'hidden',
+		    'value' => '',
+		    'extra' => 
+		    array (
+		      'private' => 0,
+		      'hidden_type' => 'value',
+		      'analysis' => false,
+		    ),
+		    'required' => '0',
+		    'weight' => '68',
+		    'page_num' => 1,
+		  ),
+	);
+
+	$node->webform = array(
+		'confirmation' => '',
+		'confirmation_format' => 'plain_text',
+		'redirect_url' => '/volunteers',
+		'status' => '1',
+		'block' => '0',
+		'allow_draft' => '0',
+		'auto_save' => '0',
+		'submit_notice' => '1',
+		'submit_text' => 'Save',
+		'submit_limit' => '-1',
+		'submit_interval' => '-1',
+		'total_submit_limit' => '-1',
+		'total_submit_interval' => '-1',
+		'progressbar_bar' => '0',
+		'progressbar_page_number' => '0',
+		'progressbar_percent' => '0',
+		'progressbar_pagebreak_labels' => '0',
+		'progressbar_include_confirmation' => '1',
+		'progressbar_label_first' => 'Start',
+		'progressbar_label_confirmation' => 'Complete',
+		'record_exists' => true,
+		'roles' => 
+		array (
+		  0 => '5',
+		),
+		'emails' => array(),
+		'components' => $components,
+	);
+
+
+	$webform_civicrm_data = array (
+		'contact' => array (
+			1 => array (
+				'contact' => array(
+					1 => array (
+						'contact_type' => 'individual',
+						'contact_sub_type' => array(
+							'Volunteer' => 'Volunteer'
+						),
+						'webform_label' => 'Volunteer',
+					),
+				),
+				'number_of_cg1' => 1,
+				'number_of_other' => 0,
+				'number_of_address' => 1,
+				'number_of_phone' => 1,
+				'number_of_email' => 1,
+				'number_of_website' => 0,
+				'address' => array (
+					1 => array(
+						'location_type_id' => 1,
+					)
+				),
+				'phone' => array (
+					1 => array(
+						'phone_type_id' => 1,
+						'location_type_id' => 1
+					)
+				),
+				'email' => array(
+					1 => array (
+						'location_type_id' => 1
+					)
+				)
+			),
+			2 => array (
+				'contact' => array (
+					1 => array (
+						'contact_type' => 'organization',
+						'contact_sub_type' => array (),
+						'webform_label' => 'Shop'
+					)
+				),
+				'number_of_other' => 0,
+				'number_of_address' => 0,
+				'number_of_phone' => 0,
+				'number_of_email' => 0,
+				'number_of_website' => 0,
+				'number_of_relationship' => 1,
+				'relationship' => array (
+					1 => array(
+						'relationship_type_id' => array (
+							'5_b' => '5_b'
+						),
+						'is_active' => 1
+					)
+				)
+			)
+		),
+		'membership' => array( 
+			1 => array ( 'number_of_membership' => 0 ),
+			2 => array ( 'number_of_membership' => 0 ),
+		),
+		'participant_reg_type' => 0,
+		'reg_options' => array (
+			'event_type' => 'any',
+			'show_past_events' => 0,
+			'title_display' => 'title',
+			'show_remaining' => 0,
+			'validate' => 1,
+			'block_form' => 0,
+		)
+	);
+
+	$node->path = array('alias' => 'volunteers/edit');
+	// Save the node.
+	node_save($node);
+
+	$node_id = $node->nid;
+	variable_set('oxfam_volunteer_webform_node_id', $node_id);
+
+	//set civicrm settings
+	$civicrm_settings = new stdClass();
+	$civicrm_settings->nid = $node_id;
+	$civicrm_settings->data = $webform_civicrm_data;
+	$civicrm_settings->prefix_known = '';
+	$civicrm_settings->prefix_unknown = '';
+	$civicrm_settings->message = '';
+	$civicrm_settings->confirm_subscription = 1;
+	$civicrm_settings->block_unknown_users = 1;
+	$civicrm_settings->create_fieldsets = 0;
+	$civicrm_settings->new_contact_source = 'Shop manager';
+	drupal_write_record('webform_civicrm_forms', $civicrm_settings);
+}
+
 /**
  * Implements hook_views_default_views().
  */
 function oxfam_volunteer_views_default_views() {
-  $view = new view();
-  $view->name = 'volunteers';
-  $view->description = '';
-  $view->tag = 'oxfam';
-  $view->base_table = 'civicrm_contact';
-  $view->human_name = 'Volunteers';
-  $view->core = 7;
-  $view->api_version = '3.0';
-  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+$view = new view();
+	$view->name = 'volunteers';
+	$view->description = '';
+	$view->tag = 'oxfam';
+	$view->base_table = 'civicrm_contact';
+	$view->human_name = 'Volunteers';
+	$view->core = 7;
+	$view->api_version = '3.0';
+	$view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
@@ -94,12 +598,30 @@ function oxfam_volunteer_views_default_views() {
   $handler->display->display_options['relationships']['drupal_id']['relationship'] = 'contact_id_a_';
   $handler->display->display_options['relationships']['drupal_id']['label'] = 'user';
   $handler->display->display_options['relationships']['drupal_id']['required'] = TRUE;
-  /* Veld: CiviCRM Contacts: Display Name */
-  $handler->display->display_options['fields']['display_name_1']['id'] = 'display_name_1';
-  $handler->display->display_options['fields']['display_name_1']['table'] = 'civicrm_contact';
-  $handler->display->display_options['fields']['display_name_1']['field'] = 'display_name';
-  $handler->display->display_options['fields']['display_name_1']['label'] = 'Vrijwilliger';
-  $handler->display->display_options['fields']['display_name_1']['link_to_civicrm_contact'] = 1;
+	/* Veld: CiviCRM Contacts: Contact ID */
+	$handler->display->display_options['fields']['id']['id'] = 'id';
+	$handler->display->display_options['fields']['id']['table'] = 'civicrm_contact';
+	$handler->display->display_options['fields']['id']['field'] = 'id';
+	$handler->display->display_options['fields']['id']['label'] = '';
+	$handler->display->display_options['fields']['id']['exclude'] = TRUE;
+	$handler->display->display_options['fields']['id']['element_label_colon'] = FALSE;
+	/* Veld: Shop ID */
+	$handler->display->display_options['fields']['id_1']['id'] = 'id_1';
+	$handler->display->display_options['fields']['id_1']['table'] = 'civicrm_contact';
+	$handler->display->display_options['fields']['id_1']['field'] = 'id';
+	$handler->display->display_options['fields']['id_1']['relationship'] = 'contact_id_b_';
+	$handler->display->display_options['fields']['id_1']['ui_name'] = 'Shop ID';
+	$handler->display->display_options['fields']['id_1']['label'] = '';
+	$handler->display->display_options['fields']['id_1']['exclude'] = TRUE;
+	$handler->display->display_options['fields']['id_1']['element_label_colon'] = FALSE;
+	/* Veld: CiviCRM Contacts: Display Name */
+	$handler->display->display_options['fields']['display_name_1']['id'] = 'display_name_1';
+	$handler->display->display_options['fields']['display_name_1']['table'] = 'civicrm_contact';
+	$handler->display->display_options['fields']['display_name_1']['field'] = 'display_name';
+	$handler->display->display_options['fields']['display_name_1']['label'] = 'Vrijwilliger';
+	$handler->display->display_options['fields']['display_name_1']['alter']['make_link'] = TRUE;
+	$handler->display->display_options['fields']['display_name_1']['alter']['path'] = 'volunteers/edit?cid1=[id]&cid2=[id_1]';
+	$handler->display->display_options['fields']['display_name_1']['link_to_civicrm_contact'] = 0;
   /* Veld: CiviCRM Address: Full Street Address */
   $handler->display->display_options['fields']['street_address']['id'] = 'street_address';
   $handler->display->display_options['fields']['street_address']['table'] = 'civicrm_address';
@@ -157,7 +679,7 @@ function oxfam_volunteer_views_default_views() {
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
   $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
-  $handler->display->display_options['path'] = 'volunteers';
+  $handler->display->display_options['path'] = 'volunteers/show';
   $translatables['test'] = array(
     t('Master'),
     t('Volunteers'),
