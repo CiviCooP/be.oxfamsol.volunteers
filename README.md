@@ -10,6 +10,7 @@ Installation
 ------------
 
 Install this module within your drupal module folder and then enable the module
+
 Also be aware that the shop manager needs access in civicrm to the contacts. This could be accomplished with the civicrm relationship-permissions-acls (https://civicrm.org/extensions/relationship-permissions-acls)
 
 Upgrade
@@ -21,4 +22,5 @@ Pages
 -----
 
 /volunteers: containing an overview of all volunteers of a shop. The shop managers sees only the volunteers belonging to shop(s) he manages.
+
 /volunteers/edit: containing a webform for editing a volunteer.
