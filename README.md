@@ -24,3 +24,5 @@ Pages
 /volunteers: containing an overview of all volunteers of a shop. The shop managers sees only the volunteers belonging to shop(s) he manages.
 
 /volunteers/edit: containing a webform for editing a volunteer.
+
+volunteers/availability: containing an overview of the availability of the volunteers
