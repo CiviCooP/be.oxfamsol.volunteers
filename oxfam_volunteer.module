@@ -1196,7 +1196,9 @@ function oxfam_volunteer_enable() {
 		'roles' => 
 		array (
 		  0 => '3',
-			1 => '5',
+			1 => '4',
+			2 => '5',
+			3 => '7',
 		),
 		'emails' => array(),
 		'components' => $components,
